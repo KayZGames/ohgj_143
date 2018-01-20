@@ -9,6 +9,10 @@ class ControllerSystem extends GenericInputHandlingSystem {
   @override
   void processEntity(Entity entity) {
     final c = cm[entity];
+    c.up = false;
+    c.down = false;
+    c.left = false;
+    c.right = false;
     if (up) {
       c.up = true;
     } else if (down) {

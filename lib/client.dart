@@ -16,7 +16,7 @@ class Game extends GameBase {
     addEntity([
       new Controller(),
       new Position(0.5, 0.05),
-      new Lander(),
+      new Lander(1.0),
       new Acceleration(0.0, 0.0),
       new Velocity(0.0, 0.0)
     ]);
@@ -28,6 +28,7 @@ class Game extends GameBase {
       GameBase.rendering: [
         new ControllerSystem(),
         new GravitySystem(),
+        new LanderThrusterSystem(),
         new AccelerationSystem(),
         new MovementSystem(),
         new CanvasCleaningSystem(canvas),

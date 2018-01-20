@@ -23,6 +23,7 @@ class BackgroundRenderingSystem extends VoidEntitySystem {
 class LanderRenderingSystem extends EntityProcessingSystem {
   CameraManager cm;
   Mapper<Position> pm;
+  Mapper<Lander> lm;
   CanvasRenderingContext2D ctx;
 
   LanderRenderingSystem(this.ctx)
@@ -30,9 +31,20 @@ class LanderRenderingSystem extends EntityProcessingSystem {
 
   @override
   void processEntity(Entity entity) {
-    var p = pm[entity];
+    final p = pm[entity];
+    final l = lm[entity];
     ctx
       ..fillStyle = 'lightgrey'
-      ..fillRect(p.x * cm.width, (p.y - 0.03) * cm.height, 0.015 * cm.width, 0.03 * cm.height);
+      ..fillRect(p.x * cm.width, (p.y - 0.03) * cm.height, 0.015 * cm.width,
+          0.03 * cm.height)
+      ..strokeStyle = 'white'
+      ..fillRect(p.x * cm.width, (p.y - 0.01) * cm.height, 0.015 * cm.width,
+          0.01 * cm.height)
+      ..fillStyle = 'black'
+      ..fillRect((p.x + 0.001) * cm.width, (p.y - 0.012) * cm.height, 0.013 * cm.width,
+          0.01 * cm.height)
+      ..fillStyle = 'red'
+      ..fillRect((p.x + 0.001) * cm.width, (p.y - 0.012 * l.fuel) * cm.height,
+          0.013 * cm.width, 0.01 * cm.height * l.fuel);
   }
 }

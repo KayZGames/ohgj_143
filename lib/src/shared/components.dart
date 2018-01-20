@@ -7,7 +7,10 @@ class Controller extends Component {
       {this.up: false, this.down: false, this.left: false, this.right: false});
 }
 
-class Lander extends Component {}
+class Lander extends Component {
+  double fuel;
+  Lander(this.fuel);
+}
 
 class Acceleration extends Component {
   double x, y;
