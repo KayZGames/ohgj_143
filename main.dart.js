@@ -4343,16 +4343,16 @@ if(typeof v!=="number")return v.a1()
 if(v>0){if(y.gcs()===!0){v=x.a
 u=this.b.cy
 if(typeof v!=="number")return v.X()
-x.a=v-u*0.1
+x.a=v-u*0.075
 z.sj(w,J.Z(z.gj(w),3*this.b.cy))}if(y.gaH(y)===!0){v=x.a
 u=this.b.cy
 if(typeof v!=="number")return v.X()
-x.a=v-u*0.03
-z.si(w,J.Z(z.gi(w),this.b.cy))}if(y.gcI(y)===!0){v=x.a
+x.a=v-u*0.015
+z.si(w,J.Z(z.gi(w),2*this.b.cy))}if(y.gcI(y)===!0){v=x.a
 u=this.b.cy
 if(typeof v!=="number")return v.X()
-x.a=v-u*0.03
-z.si(w,J.r(z.gi(w),this.b.cy))}x.a=Math.max(H.bv(x.a),0)}},"$1","gR",2,0,3],
+x.a=v-u*0.015
+z.si(w,J.r(z.gi(w),2*this.b.cy))}x.a=Math.max(H.bv(x.a),0)}},"$1","gR",2,0,3],
 D:function(){this.L()
 this.go=S.y(C.i,this.b,G.aj)
 this.fy=S.y(C.d,this.b,G.aa)
