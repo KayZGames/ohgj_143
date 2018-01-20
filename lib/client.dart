@@ -3,17 +3,23 @@ library client;
 import 'package:ohgj_143/shared.dart';
 import 'package:ohgj_143/src/shared/components.dart';
 import 'package:gamedev_helpers/gamedev_helpers.dart';
+import 'package:ohgj_143/src/shared/systems/logic.dart';
 
 import 'src/client/systems/events.dart';
 import 'src/client/systems/rendering.dart';
 
 class Game extends GameBase {
-
   Game() : super.noAssets('ohgj_143', '#game');
 
   @override
   void createEntities() {
-    addEntity([new Controller(), new Position(0.5, 0.05), new Lander()]);
+    addEntity([
+      new Controller(),
+      new Position(0.5, 0.05),
+      new Lander(),
+      new Acceleration(0.0, 0.0),
+      new Velocity(0.0, 0.0)
+    ]);
   }
 
   @override
@@ -21,6 +27,9 @@ class Game extends GameBase {
     return {
       GameBase.rendering: [
         new ControllerSystem(),
+        new GravitySystem(),
+        new AccelerationSystem(),
+        new MovementSystem(),
         new CanvasCleaningSystem(canvas),
         new BackgroundRenderingSystem(ctx),
         new LanderRenderingSystem(ctx),

@@ -8,3 +8,12 @@ class Controller extends Component {
 }
 
 class Lander extends Component {}
+
+class Acceleration extends Component {
+  double x, y;
+  Acceleration(this.x, this.y);
+}
+class Velocity extends Component {
+  double x, y;
+  Velocity(this.x, this.y);
+}
