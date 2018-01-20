@@ -13,7 +13,7 @@ class Game extends GameBase {
 
   @override
   void createEntities() {
-    addEntity([new Controller()]);
+    addEntity([new Controller(), new Position(0.5, 0.05), new Lander()]);
   }
 
   @override
@@ -23,6 +23,7 @@ class Game extends GameBase {
         new ControllerSystem(),
         new CanvasCleaningSystem(canvas),
         new BackgroundRenderingSystem(ctx),
+        new LanderRenderingSystem(ctx),
         new FpsRenderingSystem(ctx, fillStyle: 'black'),
       ],
       GameBase.physics: [
