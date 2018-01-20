@@ -75,3 +75,26 @@ class LanderThrusterSystem extends EntityProcessingSystem {
     }
   }
 }
+
+
+class AlienMovementSystem extends EntityProcessingSystem {
+  Mapper<Alien> am;
+  Mapper<Position> pm;
+  Mapper<Velocity> vm;
+
+  AlienMovementSystem() : super(new Aspect.forAllOf([Alien, Position, Velocity]));
+
+  @override
+  void processEntity(Entity entity) {
+    final a = am[entity];
+    final v = vm[entity];
+    final p = pm[entity];
+
+    if (p.x > a.maxX) {
+      v.x = -v.x.abs();
+    } else if (p.x < a.minX) {
+      v.x = v.x.abs();
+    }
+  }
+
+}

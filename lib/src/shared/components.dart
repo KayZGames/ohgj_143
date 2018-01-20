@@ -12,6 +12,11 @@ class Lander extends Component {
   Lander(this.fuel);
 }
 
+class Alien extends Component {
+  double minX, maxX;
+  Alien(this.minX, this.maxX);
+}
+
 class Acceleration extends Component {
   double x, y;
   Acceleration(this.x, this.y);

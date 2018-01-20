@@ -20,6 +20,17 @@ class Game extends GameBase {
       new Acceleration(0.0, 0.0),
       new Velocity(0.0, 0.0)
     ]);
+
+    for (int i = 0; i < 5; i++) {
+      final minX = -0.2 + random.nextDouble();
+      final maxX = minX + 0.3 + random.nextDouble() * 0.9;
+      final vx = 0.05 + random.nextDouble() * 0.15;
+      addEntity([
+        new Position(random.nextDouble(), 0.1 + random.nextDouble() * 0.5),
+        new Alien(minX, maxX),
+        new Velocity(vx, 0.0)
+      ]);
+    }
   }
 
   @override
@@ -30,9 +41,11 @@ class Game extends GameBase {
         new LanderThrusterSystem(),
         new GravitySystem(),
         new AccelerationSystem(),
+        new AlienMovementSystem(),
         new MovementSystem(),
         new CanvasCleaningSystem(canvas),
         new BackgroundRenderingSystem(ctx),
+        new AlienRenderingSystem(ctx),
         new LanderRenderingSystem(ctx),
         new FpsRenderingSystem(ctx, fillStyle: 'black'),
       ],
