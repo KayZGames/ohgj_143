@@ -60,16 +60,16 @@ class LanderThrusterSystem extends EntityProcessingSystem {
     a.y = 0.0;
     if (l.fuel > 0.0) {
       if (c.down) {
-        l.fuel -= world.delta * 0.1;
+        l.fuel -= world.delta * 0.075;
         a.y -= 3.0 * world.delta;
       }
       if (c.left) {
-        l.fuel -= world.delta * 0.03;
-        a.x -= 1.0 * world.delta;
+        l.fuel -= world.delta * 0.015;
+        a.x -= 2.0 * world.delta;
       }
       if (c.right) {
-        l.fuel -= world.delta * 0.03;
-        a.x += 1.0 * world.delta;
+        l.fuel -= world.delta * 0.015;
+        a.x += 2.0 * world.delta;
       }
       l.fuel = max(l.fuel, 0.0);
     }
