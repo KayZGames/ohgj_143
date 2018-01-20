@@ -9,7 +9,8 @@ class Controller extends Component {
 
 class Lander extends Component {
   double fuel;
-  Lander(this.fuel);
+  int score;
+  Lander(this.fuel, this.score);
 }
 
 class Alien extends Component {

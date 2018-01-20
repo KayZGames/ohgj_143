@@ -76,13 +76,13 @@ class LanderThrusterSystem extends EntityProcessingSystem {
   }
 }
 
-
 class AlienMovementSystem extends EntityProcessingSystem {
   Mapper<Alien> am;
   Mapper<Position> pm;
   Mapper<Velocity> vm;
 
-  AlienMovementSystem() : super(new Aspect.forAllOf([Alien, Position, Velocity]));
+  AlienMovementSystem()
+      : super(new Aspect.forAllOf([Alien, Position, Velocity]));
 
   @override
   void processEntity(Entity entity) {
@@ -96,5 +96,41 @@ class AlienMovementSystem extends EntityProcessingSystem {
       v.x = v.x.abs();
     }
   }
+}
 
+class LandingSystem extends EntityProcessingSystem {
+  Mapper<Velocity> vm;
+  Mapper<Position> pm;
+  Mapper<Lander> lm;
+
+  LandingSystem() : super(new Aspect.forAllOf([Lander, Position, Velocity]));
+
+  @override
+  void processEntity(Entity entity) {
+    final p = pm[entity];
+    if (p.y >= 0.7) {
+      final v = vm[entity];
+      if (v.y < 0.1) {
+        var l = lm[entity];
+        l.score++;
+        l.fuel = 1.0;
+        p.y = 0.03;
+        p.x = 0.5;
+        v.x = 0.0;
+        v.y = 0.0;
+        final minX = -0.2 + random.nextDouble();
+        final maxX = minX + 0.3 + random.nextDouble() * 0.9;
+        final vx = 0.05 + random.nextDouble() * 0.15;
+        world.createAndAddEntity([
+          new Position(random.nextDouble(), 0.1 + random.nextDouble() * 0.5),
+          new Alien(minX, maxX),
+          new Velocity(vx, 0.0)
+        ]);
+      } else {
+        entity
+          ..removeComponent(Position)
+          ..changedInWorld();
+      }
+    }
+  }
 }

@@ -69,3 +69,18 @@ class AlienRenderingSystem extends EntityProcessingSystem {
           p.x * cm.width, p.y * cm.height, 0.02 * cm.width, 0.01 * cm.height);
   }
 }
+
+class ScoreRenderingSystem extends EntityProcessingSystem {
+  Mapper<Lander> lm;
+  CanvasRenderingContext2D ctx;
+  ScoreRenderingSystem(this.ctx) : super(new Aspect.forAllOf([Lander]));
+
+  @override
+  void processEntity(Entity entity) {
+    final l = lm[entity];
+
+    ctx
+      ..fillStyle = 'white'
+      ..fillText('Sucessful landings: ${l.score}', 0, 0);
+  }
+}
