@@ -22,6 +22,7 @@ class Game extends GameBase {
       GameBase.rendering: [
         new ControllerSystem(),
         new CanvasCleaningSystem(canvas),
+        new BackgroundRenderingSystem(ctx),
         new FpsRenderingSystem(ctx, fillStyle: 'black'),
       ],
       GameBase.physics: [
