@@ -27,8 +27,8 @@ class Game extends GameBase {
     return {
       GameBase.rendering: [
         new ControllerSystem(),
-        new GravitySystem(),
         new LanderThrusterSystem(),
+        new GravitySystem(),
         new AccelerationSystem(),
         new MovementSystem(),
         new CanvasCleaningSystem(canvas),

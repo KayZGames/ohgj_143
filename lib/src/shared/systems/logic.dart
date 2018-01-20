@@ -10,7 +10,7 @@ class GravitySystem extends EntityProcessingSystem {
   @override
   void processEntity(Entity entity) {
     final a = am[entity];
-    a.y = 1.622 * world.delta;
+    a.y += 1.622 * world.delta;
   }
 }
 
@@ -55,13 +55,23 @@ class LanderThrusterSystem extends EntityProcessingSystem {
   void processEntity(Entity entity) {
     final c = cm[entity];
     final l = lm[entity];
+    final a = am[entity];
+    a.x = 0.0;
+    a.y = 0.0;
     if (l.fuel > 0.0) {
       if (c.down) {
-        final a = am[entity];
         l.fuel -= world.delta * 0.1;
         a.y -= 3.0 * world.delta;
-        l.fuel = max(l.fuel, 0.0);
       }
+      if (c.left) {
+        l.fuel -= world.delta * 0.03;
+        a.x -= 1.0 * world.delta;
+      }
+      if (c.right) {
+        l.fuel -= world.delta * 0.03;
+        a.x += 1.0 * world.delta;
+      }
+      l.fuel = max(l.fuel, 0.0);
     }
   }
 }
